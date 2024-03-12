@@ -1,0 +1,30 @@
+def hitung_persamaan_kuadrat(a, b, c, x):
+  """
+  Menghitung hasil persamaan kuadrat ax^2 + bx + c = 0 dan diskriminan.
+
+  Args:
+    a: Koefisien x^2.
+    b: Koefisien x.
+    c: Konstanta.
+    x: Nilai x yang ingin dicari.
+
+  Returns:
+    Tuple berisi hasil persamaan kuadrat dan diskriminan.
+  """
+
+  hasil = a * x ** 2 + b * x + c
+  diskriminan = b ** 2 - 4 * a * c
+  return hasil, diskriminan
+
+# Input
+a = float(input("Masukkan nilai a: "))
+b = float(input("Masukkan nilai b: "))
+c = float(input("Masukkan nilai c: "))
+x = float(input("Masukkan nilai x: "))
+
+# Hitung hasil persamaan kuadrat dan diskriminan
+hasil, diskriminan = hitung_persamaan_kuadrat(a, b, c, x)
+
+# Output
+print(f"Hasil persamaan kuadrat: {hasil}")
+print(f"Diskriminan: {diskriminan}")
