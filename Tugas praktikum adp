@@ -1,0 +1,40 @@
+# Daftar paket dan harga
+paket = {
+    "A": 25000,
+    "B": 30000,
+    "C": 45000
+}
+
+# Menampilkan daftar paket dan harga
+for kode_paket, harga in paket.items():
+    print(f"Paket {kode_paket}: Rp{harga:,}")
+
+# Meminta input paket
+kode_paket = input("Masukkan kode paket (A/B/C): ").upper()
+
+# Memastikan input kode paket valid
+while kode_paket not in paket:
+    kode_paket = input("Kode paket tidak valid. Masukkan kode paket (A/B/C): ").upper()
+
+# Meminta input jarak
+jarak = float(input("Masukkan jarak dari rumah ke restoran (km): "))
+
+# Menentukan ongkir berdasarkan jarak
+ongkir = 0
+if jarak <= 0.5:
+    ongkir = 0
+elif jarak <= 1.5:
+    ongkir = 10000
+else:
+    ongkir = 20000
+
+# Menghitung biaya total
+biaya_total = paket[kode_paket] + ongkir
+
+# Menampilkan hasil
+print(f"""
+Paket yang dipilih: {kode_paket}
+Harga paket: Rp{paket[kode_paket]:,}
+Ongkos kirim: Rp{ongkir:,}
+Total biaya: Rp{biaya_total:,}
+""")
