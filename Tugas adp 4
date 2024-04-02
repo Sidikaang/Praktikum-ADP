@@ -1,0 +1,67 @@
+# Daftar Belanja
+
+barang = {
+    "A": 5000,
+    "B": 7000,
+    "C": 10000,
+    "D": 8000,
+}
+
+diskon_barang = {
+    "A": {
+        "min_qty": 4,
+        "diskon": 0.25,
+    },
+}
+
+diskon_total = {
+    "min_belanja": 200000,
+    "diskon": 0.1,
+}
+
+print("Selamat datang di Daftar Belanja!")
+
+total_belanja = 0
+
+while True:
+    print("\nDaftar Barang:")
+    for kode, harga in barang.items():
+        print(f"{kode}: Rp{harga:,}")
+
+    kode_barang = input("\nMasukkan kode barang: ").upper()
+    if kode_barang == "":
+        break
+    elif kode_barang not in barang:
+        print("Kode barang tidak tersedia.")
+        continue
+
+    jumlah_barang = int(input("Masukkan jumlah barang: "))
+    if jumlah_barang <= 0:
+        print("Jumlah barang harus lebih besar dari 0.")
+        continue
+
+    harga_barang = barang[kode_barang]
+    subtotal = jumlah_barang * harga_barang
+
+    if kode_barang in diskon_barang:
+        min_qty = diskon_barang[kode_barang]["min_qty"]
+        diskon_barang_item = diskon_barang[kode_barang]["diskon"]
+
+        if jumlah_barang >= min_qty:
+            diskon_barang_amount = subtotal * diskon_barang_item
+            subtotal -= diskon_barang_amount
+            print(f"Anda mendapatkan diskon 25% untuk {kode_barang} karena membeli lebih dari {min_qty} pcs.")
+            print(f"Diskon: Rp{diskon_barang_amount:,}")
+
+    total_belanja += subtotal
+
+    print(f"Subtotal: Rp{subtotal:,}")
+
+if total_belanja >= diskon_total["min_belanja"]:
+    diskon_total_amount = total_belanja * diskon_total["diskon"]
+    total_belanja -= diskon_total_amount
+    print(f"\nAnda mendapatkan diskon 10% untuk total belanja lebih dari Rp{diskon_total['min_belanja']:,}")
+    print(f"Diskon: Rp{diskon_total_amount:,}")
+
+print(f"\nTotal Belanja: Rp{total_belanja:,}")
+print("Terima kasih!")
